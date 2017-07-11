@@ -20,24 +20,24 @@ def insertionSort(array):
 #return unsorted array
 def readArray():
     with open('data.txt') as data:
-        dataArray = []
         for line in data:
+            dataArray = []
             line = line.split() # to deal with blank
             if line:            # lines (ie skip them)
                 for value in line:
                     num = int(value)
                     dataArray.append(num)
-    return dataArray
+            sortedArray = insertionSort(dataArray)
+            outPutArray(sortedArray)
+
 
 #write sorted array to insert.out
 def outPutArray(array):
-    with open('insert.out', 'w') as outPutFile:
+    with open('insert.out', 'a') as outPutFile:
         for val in array:
             num = str(val)
             outPutFile.write(num + " ")
+        outPutFile.write("\n")
 
 #Main program
-unsortedArray = readArray()
-sortedArray = insertionSort(unsortedArray)
-print(sortedArray)
-outPutArray(sortedArray)
+readArray()

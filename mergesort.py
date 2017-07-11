@@ -44,30 +44,26 @@ def merge(lefthalf, righthalf, blist):
 #return unsorted array
 def readArray():
     with open('data.txt') as data:
-        dataArray = []
         for line in data:
+            dataArray = []
             line = line.split() # to deal with blank
             if line:            # lines (ie skip them)
                 for value in line:
                     num = int(value)
                     dataArray.append(num)
+            del dataArray[0]
+            sortedArray = mergeSort(dataArray)
+            outPutArray(sortedArray)
     return dataArray
 
 #write sorted array to merge.out
 def outPutArray(array):
-    with open('merge.out', 'w') as outPutFile:
+    with open('merge.out', 'a') as outPutFile:
         for val in array:
             num = str(val)
             outPutFile.write(num + " ")
+        outPutFile.write("\n")
 
 
 #Main program
-unsortedArray = readArray()
-if unsortedArray[0] != 0:
-    del unsortedArray[0]
-    sortedArray = mergeSort(unsortedArray)
-    print(sortedArray)
-    outPutArray(sortedArray)
-else:
-    del unsortedArray[0]
-    outPutArray(unsortedArray)
+readArray()
